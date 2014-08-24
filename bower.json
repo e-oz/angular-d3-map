@@ -1,6 +1,6 @@
 {
   "name": "angular-d3-map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/jamm/angular-d3-map",
   "authors": [
     "OZ <normandiggs@gmail.com>"
@@ -12,5 +12,14 @@
     "angular",
     "map"
   ],
+  "dependencies": {
+    "angular": "latest",
+    "jquery": "latest",
+    "lodash": "latest",
+    "d3": "latest",
+    "d3-tip": "latest",
+    "angular-oz-color-iterator": "latest",
+    "angular-d3-chart-sizer": "latest"
+  },
   "license": "MIT"
 }
