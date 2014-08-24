@@ -1,0 +1,16 @@
+{
+  "name": "angular-d3-map",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jamm/angular-d3-map",
+  "authors": [
+    "OZ <normandiggs@gmail.com>"
+  ],
+  "description": "AngularJS directive to draw interactive map with D3",
+  "main": "d3map.js",
+  "keywords": [
+    "d3",
+    "angular",
+    "map"
+  ],
+  "license": "MIT"
+}
