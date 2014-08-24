@@ -18,7 +18,6 @@
     "lodash": "latest",
     "d3": "latest",
     "d3-tip": "latest",
-    "angular-oz-color-iterator": "latest",
     "angular-d3-chart-sizer": "latest"
   },
   "license": "MIT"
