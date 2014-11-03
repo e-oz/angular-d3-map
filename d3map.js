@@ -17,6 +17,10 @@
  * textFontSize - font size for 'text' objects
  * textClass - css class for 'text' objects
  * textFont - font family for 'text' objects
+ * divClass - css class for 'div' objects
+ * ctrlLink - link to object, which will receive method `addObjects`.
+ *   arguments of the `addObjects` are similar to resolve() of getMap promise, and it's they way how you can
+ *   add objects to the existing map dynamically
  *
  * getMap - function, will be called on map initialization and on each map area click, and
  *  to use it you should return promise (angular.$q) where result of promise
@@ -30,7 +34,7 @@
  * Supported object types are 'path' (default), 'circle', 'div' and 'text'.
  * In nodeHandler() you can declare any attributes and event-handlers for objects.
  */
-angular.module('oz.d3Map',[])
+angular.module('oz.d3Map', [])
   .directive('ozD3Map', function ($timeout, D3ChartSizer) {
     var xyz, g, projection, path, svg, width, height, objects, resizeBind;
     var stack = [];
@@ -78,14 +82,15 @@ angular.module('oz.d3Map',[])
         textFontSize:   '@',
         textClass:      '@',
         textFont:       '@',
-        divClass:       '@'
+        divClass:       '@',
+        ctrlLink:       '='
       },
       compile:  function (el, attrs) {
         setDefaults(attrs);
         return {
           post: function ($scope, $element) {
             if (!$scope.getMap || !angular.isFunction($scope.getMap)) {
-              console.error('map getter not binded');
+              console.error('map getter not bound');
               return false;
             }
             svg = d3.select(angular.element($element)[0]).append('svg');
@@ -177,9 +182,9 @@ angular.module('oz.d3Map',[])
                     .attr('class', $scope.pointClass)
                     .attr('transform', function (d) {
                       return 'translate(' + projection([
-                        d.location.longitude,
-                        d.location.latitude
-                      ]) + ')';
+                          d.location.longitude,
+                          d.location.latitude
+                        ]) + ')';
                     });
                   break;
                 case 'text':
@@ -322,6 +327,10 @@ angular.module('oz.d3Map',[])
                   }
                 }, 200);
               });
+            }
+
+            if ($scope.ctrlLink && angular.isObject($scope.ctrlLink)) {
+              $scope.ctrlLink.addObjects = addObjects;
             }
           }
         };
